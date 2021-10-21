@@ -1,0 +1,81 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import TheVueCLI from '../views/session3/TheVueCLI.vue'
+import ReactionTimer from '../views/session4/ReactionTimer.vue'
+import WebForms from '../views/session5/WebForms.vue'
+import ProjectPlanner from '../views/session6-7-8/ProjectPlanner.vue'
+import EditProject from '../views/session6-7-8/components/EditProject.vue'
+import DojoBlog from '../views/session9-10-11/DojoBlog.vue'
+import Details from '../views/session9-10-11/components/Details.vue'
+import Tag from '../views/session9-10-11/components/Tag.vue'
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: TheVueCLI
+  },
+  {
+    path: '/the-vue-cli',
+    name: 'TheVueCLI',
+    component: TheVueCLI
+  },
+  {
+    path: '/reaction-timer',
+    name: 'ReactionTimer',
+    component: ReactionTimer
+  },
+  {
+    path: '/web-forms',
+    name: 'WebForms',
+    component: WebForms
+  },
+  {
+    path: '/project-planner',
+    name: 'ProjectPlanner',
+    component: ProjectPlanner
+  },
+  {
+    path: '/project-planner/edit-project/:id',
+    name: 'EditProject',
+    component: EditProject,
+    props: true
+  },
+  {
+    path: '/dojo-blog',
+    name: 'DojoBlog',
+    component: DojoBlog
+  },
+  {
+    path: '/dojo-blog/posts/:id',
+    name: 'Details',
+    component: Details,
+    props: true
+  },
+  // {
+  //   path: '/dojo-blog/create',
+  //   name: 'Create',
+  //   component: Create
+  // },
+  {
+    path: '/dojo-blog/tags/:tag',
+    name: 'Tag',
+    component: Tag
+  }
+  // redirect
+  // {
+  //   path: '/all-jobs',
+  //   redirect: '/jobs'
+  // },
+  // 404 catchall
+  // {
+  //   path: '/:catchAll(.*)',
+  //   name: 'NotFound',
+  //   component: NotFound
+  // }
+]
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
+
+export default router
