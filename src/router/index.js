@@ -15,7 +15,6 @@ import { firebaseAuth } from '../firebase/config'
 // auth guard
 const requiredAuth = (to, from, next) => {
   let user = firebaseAuth.currentUser
-  console.log('current user is ', user)
   if (!user) {
     next({name: 'LiveChatRoom'})
   } else {
