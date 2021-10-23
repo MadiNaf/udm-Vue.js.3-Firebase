@@ -9,6 +9,7 @@ const getPosts = () => {
   const load = async () => {
     try {
       await firestoreService.collection('posts')
+      .orderBy('createdAt', 'desc')
         .get()
           .then( data => {
             posts.value = data.docs.map( doc => {

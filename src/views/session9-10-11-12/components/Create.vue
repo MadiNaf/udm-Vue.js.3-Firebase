@@ -22,7 +22,8 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { firestoreService } from '../../../firebase/config'
+import { firestoreService, timestamp } from '../../../firebase/config'
+
 
 export default {
   setup() {
@@ -32,9 +33,6 @@ export default {
     const tag = ref('')
 
     const router = useRouter()
-    //console.log(router)
-    //router.go(1)
-    //router.go(-1)
 
     const handleKeydown = () => {
       if (!tags.value.includes(tag.value)) {
@@ -46,10 +44,10 @@ export default {
 
     const handleSubmit = async () => {
       const post = {
-        id: Math.floor(Math.random() * 10000),
         title: title.value,
         body: body.value,
-        tags: tags.value
+        tags: tags.value,
+        createdAt: timestamp()
       }
 
       const res = await firestoreService.collection('posts').add(post)

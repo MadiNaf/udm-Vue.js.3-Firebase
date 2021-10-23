@@ -4,9 +4,11 @@ import ReactionTimer from '../views/session4/ReactionTimer.vue'
 import WebForms from '../views/session5/WebForms.vue'
 import ProjectPlanner from '../views/session6-7-8/ProjectPlanner.vue'
 import EditProject from '../views/session6-7-8/components/EditProject.vue'
-import DojoBlog from '../views/session9-10-11/DojoBlog.vue'
-import Details from '../views/session9-10-11/components/Details.vue'
-import Tag from '../views/session9-10-11/components/Tag.vue'
+import DojoBlog from '../views/session9-10-11-12/DojoBlog.vue'
+import Details from '../views/session9-10-11-12/components/Details.vue'
+import Tag from '../views/session9-10-11-12/components/Tag.vue'
+import Create from '../views/session9-10-11-12/components/Create.vue'
+
 const routes = [
   {
     path: '/',
@@ -50,11 +52,11 @@ const routes = [
     component: Details,
     props: true
   },
-  // {
-  //   path: '/dojo-blog/create',
-  //   name: 'Create',
-  //   component: Create
-  // },
+  {
+    path: '/dojo-blog/create',
+    name: 'Create',
+    component: Create
+  },
   {
     path: '/dojo-blog/tags/:tag',
     name: 'Tag',
