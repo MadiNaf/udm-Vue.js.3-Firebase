@@ -33,7 +33,7 @@ import AddProject from '../session6-7-8/components/AddProject.vue'
 import NavTab from '../common/NavTab.vue'
 import FilterNav from '../session6-7-8/components/FilterNav.vue'
 import { firestoreService } from '../../firebase/config'
-import Spinner from '../session9-10-11/components/Spinner.vue'
+import Spinner from '../session9-10-11-12/components/Spinner.vue'
 
 export default {
   name: 'ProjectPlanner',

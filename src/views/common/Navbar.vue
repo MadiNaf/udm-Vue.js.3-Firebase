@@ -25,7 +25,8 @@ export default {
         {id: 'b', item: 'Chapter 4', route: 'ReactionTimer'},
         {id: 'c', item: 'Chapter 5', route: 'WebForms'},
         {id: 'd', item: 'Chapter 6...8', route: 'ProjectPlanner'},
-        {id: 'e', item: 'Chapter 9...12', route: 'DojoBlog'}
+        {id: 'e', item: 'Chapter 9...12', route: 'DojoBlog'},
+        {id: 'f', item: 'Chapter 13', route: 'LiveChatRoom'}
       ]
     }
   },

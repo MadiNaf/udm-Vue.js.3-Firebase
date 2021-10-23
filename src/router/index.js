@@ -8,6 +8,20 @@ import DojoBlog from '../views/session9-10-11-12/DojoBlog.vue'
 import Details from '../views/session9-10-11-12/components/Details.vue'
 import Tag from '../views/session9-10-11-12/components/Tag.vue'
 import Create from '../views/session9-10-11-12/components/Create.vue'
+import LiveChatRoom from '../views/session13/LiveChatRoom.vue'
+import Chatroom from '../views/session13/components/Chatroom'
+import { firebaseAuth } from '../firebase/config'
+
+// auth guard
+const requiredAuth = (to, from, next) => {
+  let user = firebaseAuth.currentUser
+  console.log('current user is ', user)
+  if (!user) {
+    next({name: 'LiveChatRoom'})
+  } else {
+    next()
+  }
+}
 
 const routes = [
   {
@@ -61,6 +75,17 @@ const routes = [
     path: '/dojo-blog/tags/:tag',
     name: 'Tag',
     component: Tag
+  },
+  {
+    path: '/live-chat-room',
+    name: 'LiveChatRoom',
+    component: LiveChatRoom
+  },
+  {
+    path: '/chat-room',
+    name: 'Chatroom',
+    component: Chatroom,
+    beforeEnter: requiredAuth
   }
   // redirect
   // {
