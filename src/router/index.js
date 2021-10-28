@@ -9,6 +9,7 @@ import Create from '../views/session9-12/components/Create.vue'
 import LiveChatRoom from '../views/session13-15/LiveChatRoom.vue'
 import Chatroom from '../views/session13-15/components/Chatroom'
 import { firebaseAuth } from '../firebase/config'
+import MusoNinja from '../views/session16/MusoNinja.vue'
 
 // auth guard
 const requiredAuth = (to, from, next) => {
@@ -97,6 +98,12 @@ const routes = [
     redirect: '/'
   },
     /** ************** Chapter 16 to ... ************** */
+  {
+    path: '/muso-ninja',
+    name: 'MusoNinja',
+    component: MusoNinja
+    // beforeEnter: requireNoAuth
+  },
   // 404 catchall
   // {
   //   path: '/:catchAll(.*)',

@@ -23,8 +23,9 @@ export default {
       chapters: [
         {id: 'a', item: 'Chapter 1...4', route: 'ReactionTimer'},
         {id: 'c', item: 'Chapter 5...8', route: 'ProjectPlanner'},
-        {id: 'e', item: 'Chapter 9...12', route: 'DojoBlog'},
-        {id: 'f', item: 'Chapter 13..15', route: 'LiveChatRoom'}
+        {id: 'd', item: 'Chapter 9...12', route: 'DojoBlog'},
+        {id: 'e', item: 'Chapter 13..15', route: 'LiveChatRoom'},
+        {id: 'f', item: 'Chapter 16', route: 'MusoNinja'}
       ]
     }
   },
