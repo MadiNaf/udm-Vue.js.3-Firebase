@@ -23,7 +23,8 @@ const requiredAuth = (to, from, next) => {
 }
 
 const requireNoAuth = (to, form, next) => {
-  let user = firebaseAuth
+  let user = firebaseAuth.currentUser
+  console.log('user :: ', user)
   if(user) {
     next({name: 'Chatroom'})
   } else {
