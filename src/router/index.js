@@ -8,8 +8,8 @@ import DojoBlog from '../views/session9-10-11-12/DojoBlog.vue'
 import Details from '../views/session9-10-11-12/components/Details.vue'
 import Tag from '../views/session9-10-11-12/components/Tag.vue'
 import Create from '../views/session9-10-11-12/components/Create.vue'
-import LiveChatRoom from '../views/session13/LiveChatRoom.vue'
-import Chatroom from '../views/session13/components/Chatroom'
+import LiveChatRoom from '../views/session13-14/LiveChatRoom.vue'
+import Chatroom from '../views/session13-14/components/Chatroom'
 import { firebaseAuth } from '../firebase/config'
 
 // auth guard

@@ -4,10 +4,16 @@
       <p class="error">{{ error }}</p>
     </section>
     <section v-if="documents" class="messages" ref="messages">
-      <div v-for="doc in formattedDocuments" :key="doc.id" class="single-chat">
-        <span class="created-at"> {{ doc.createdAt }} </span>
-        <span class="name"> {{ doc.name}} </span>
-        <span class="message"> {{ doc.message }} </span>
+      <div v-for="(doc, index) in formattedDocuments"
+          :key="doc.id"
+          :class="getClass(index)">
+        <div :class="doc.name === user.displayName ? rightMsg : leftMsg">
+          <p>
+            <span class="created-at"> {{ doc.createdAt }} </span>
+            <span class="name"> {{ doc.name}} </span>
+            <span class="message"> {{ doc.message }} </span>
+          </p>
+        </div>
       </div>
     </section>
   </div>
@@ -15,12 +21,17 @@
 
 <script>
 import getCollection from '../composable/getCollection'
+import { getUser } from '../composable/useAuth'
 import { formatDistanceToNow } from 'date-fns'
 import { computed, onUpdated, ref } from 'vue'
 
 export default {
   setup() {
     const { error, documents} = getCollection('message')
+    const { user } = getUser()
+  
+    const leftMsg = ref('left-message')
+    const rightMsg = ref('right-message')
 
     const formattedDocuments = computed(() => {
       if(documents.value) {
@@ -38,7 +49,11 @@ export default {
       messages.value.scrollTop = messages.value.scrollHeight
     })
 
-    return {error, documents, formattedDocuments, messages}
+    const getClass = (i) => {
+      return i%2 === 0? 'single-chat' : 'odd-message single-chat'
+    }
+
+    return {error, documents, formattedDocuments, messages, leftMsg, rightMsg, user, getClass}
   }  
 }
 </script>
@@ -49,7 +64,8 @@ export default {
     padding: 30px 20px;
   }
   .single-chat {
-    margin: 18px 0;
+    margin: 2px 0;
+    padding: 10px 20px;
   }
   .created-at {
     display: block;
@@ -64,5 +80,21 @@ export default {
   .messages {
     max-height: 400px;
     overflow: auto;
+  }
+
+  .right-message {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .left-message {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .odd-message {
+    background: #eeeeee;
   }
 </style>
