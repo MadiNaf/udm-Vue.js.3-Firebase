@@ -10,7 +10,7 @@
         <div :class="doc.name === user.displayName ? rightMsg : leftMsg">
           <p>
             <span class="created-at"> {{ doc.createdAt }} </span>
-            <span class="name"> {{ doc.name}} </span>
+            <span class="name"> {{ doc.name}} : </span>
             <span class="message"> {{ doc.message }} </span>
           </p>
         </div>
