@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { useLogout, getUser } from '../composable/useAuth'
+import { useLogout, getUser } from '@/composables/useAuth'
 
 export default {
   name: 'NavLiveChat',

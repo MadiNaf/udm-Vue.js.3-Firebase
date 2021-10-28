@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mn-content">
     ninja
   </div>
 </template>
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style lang="">
-  
+<style scoped>
+
 </style>

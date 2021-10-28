@@ -7,12 +7,12 @@
       <label>Details</label>
       <textarea v-model="details" required></textarea>
       <button>Add Project</button>
-  </form>
+    </form>
   </div>
 </template>
 
 <script>
-import { firestoreService } from '../../../firebase/config'
+import { firestoreService } from '@/firebase/config'
 
 export default {
   name:'AddPreject',
@@ -35,7 +35,9 @@ export default {
         .add(project)
         .then( () => {
           this.$emit('added', true)
-
+          console.log('test')
+          this.title = ''
+          this.details = ''
           })
         .catch( e => console.log('add error ', e))
     }

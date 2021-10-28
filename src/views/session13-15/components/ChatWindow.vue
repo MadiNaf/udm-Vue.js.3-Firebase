@@ -7,7 +7,7 @@
       <div v-for="(doc, index) in formattedDocuments"
           :key="doc.id"
           :class="getClass(index)">
-        <div :class="doc.name === user.displayName ? rightMsg : leftMsg">
+        <div :class="doc.name === user?.displayName ? rightMsg : leftMsg">
           <p>
             <span class="created-at"> {{ doc.createdAt }} </span>
             <span class="name"> {{ doc.name}} : </span>
@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import getCollection from '../composable/getCollection'
-import { getUser } from '../composable/useAuth'
+import getCollection from '@/composables/getCollection'
+import { getUser } from '@/composables/useAuth'
 import { formatDistanceToNow } from 'date-fns'
 import { computed, onUpdated, ref } from 'vue'
 

@@ -11,9 +11,9 @@
 
 <script>
 import { ref } from 'vue'
-import { getUser } from '../composable/useAuth'
-import { timestamp } from '../../../firebase/config'
-import useCollection from '../composable/useCollection'
+import { getUser } from '@/composables/useAuth'
+import { timestamp } from '@/firebase/config'
+import useCollection from '@/composables/useCollection'
 
 export default {
   setup() {

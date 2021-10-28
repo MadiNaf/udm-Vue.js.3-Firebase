@@ -9,7 +9,7 @@
     </section>
     <NavTab :tabItems="tabItems" :selectedItem="currentTab">
 
-      <FilterNav @filterChange="current= $event" :current="current"/>
+      <FilterNav @filterChange="current= $event" :current="current" />
       
       <template v-slot:singleproject>
         <div v-if="projects.length" class="slot-container">
@@ -51,7 +51,7 @@ export default {
       tabItems: [],
       projects: [],
       current: 'all',
-      currentTab: 'singleproject'
+      currentTab: 'singleproject',
     };
   },
   mounted() {

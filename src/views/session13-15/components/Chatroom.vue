@@ -13,7 +13,7 @@
 <script>
 import { useRouter } from 'vue-router'
 import NavLiveChat from './NavLiveChat.vue'
-import { getUser } from '../composable/useAuth'
+import { getUser } from '@/composables/useAuth'
 import { watch } from 'vue'
 import NewChatForm from './NewChatForm.vue'
 import ChatWindow from './ChatWindow.vue'

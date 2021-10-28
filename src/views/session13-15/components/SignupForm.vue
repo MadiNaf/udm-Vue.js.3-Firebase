@@ -11,7 +11,7 @@
 
 <script>
 import { ref } from 'vue'
-import { useSignup } from '../composable/useAuth'
+import { useSignup } from '@/composables/useAuth'
 
 export default {
   setup(props, context) {

@@ -10,11 +10,19 @@
           <router-link :to="{ name: chapter.route }">{{ chapter.item }}</router-link>
         </li>
       </ul>
+
+      <ul>
+        <li class="nav-item" @click="logout()">
+          <span class="material-icons logout">logout</span>
+        </li>
+      </ul>
     </nav>
   </div>
 </template>
 
 <script>
+import { useLogout, getUser } from '@/composables/useAuth'
+
 export default {
   name: 'Navbar',
   data() {
@@ -26,12 +34,29 @@ export default {
         {id: 'd', item: 'Chapter 9...12', route: 'DojoBlog'},
         {id: 'e', item: 'Chapter 13..15', route: 'LiveChatRoom'},
         {id: 'f', item: 'Chapter 16', route: 'MusoNinja'}
-      ]
+      ],
+      isConnected: false
     }
+  },
+  mounted() {
+    const { user } = getUser()
+    this.isConnected = user.value ? true : false 
+  },
+  updated() {
+    const { user } = getUser()
+    this.isConnected = user.value ? true : false  
   },
   methods: {
     moveTo(id) {
       this.selected = id
+    }, 
+    logout() {
+      const { logout } = useLogout()
+      const handleClick = async () => {
+        await logout()
+        this.isConnected =  false
+      }
+      handleClick()
     }
   }
 }
@@ -45,6 +70,8 @@ export default {
     background-color: #212F3C;
     height: 50px;
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
   }
 
   ul {
@@ -78,5 +105,8 @@ export default {
     color: #212F3C;
   }
 
-
+  .logout {
+    list-style: none;
+    color: #da0f41;
+  }
 </style>

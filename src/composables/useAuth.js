@@ -1,10 +1,12 @@
 import { ref } from 'vue'
-import { firebaseAuth } from '../../../firebase/config'
+import { firebaseAuth } from '../firebase/config'
 
 const error = ref(null)
+const isPending = ref(false)
 
 const signup = async (email, password, displayName) => {
   error.value = null
+  isPending.value = true
 
   try {
     const res = await firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -13,28 +15,32 @@ const signup = async (email, password, displayName) => {
     }
     await res.user.updateProfile({ displayName })
     error.value = null
-
+    isPending.value = false
     return res
   } catch(err) {
     console.log(err)
     error.value = err.message
+    isPending.value = false
     // The email address is already in use by another account. (auth/email-already-in-use).
     // Firebase: Password should be at least 6 characters (auth/weak-password).
   }
 }
 
 const useSignup = () => {
-  return {error, signup}
+  return {error, signup, isPending}
 }
 // *********************************************************************************
 const login = async (email, password) => {
   error.value = null
+  isPending.value = true
   try {
     const res = await firebaseAuth.signInWithEmailAndPassword(email, password)
     error.value = null
+    isPending.value = false
     return res
   } catch(err) {
     error.value = 'Incorrect login credentials.'
+    isPending.value = false
   }
 }
 
@@ -45,12 +51,15 @@ const useLogin = () => {
 // *********************************************************************************
 const logout = async () =>  {
   error.value = null
+  isPending.value = true
   try {
     const res = await firebaseAuth.signOut()
     error.value = null
+    isPending.value = false
     return res
   } catch (err) {
     error.value = err.message
+    isPending.value = false
   }
 }
 

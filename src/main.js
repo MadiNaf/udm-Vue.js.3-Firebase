@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 // CSS for the live chat room
-import './assets/live-chat-room.css'
+import './assets/common.css'
 
 // firebase auth
 import { firebaseAuth } from './firebase/config'
