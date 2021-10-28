@@ -21,12 +21,10 @@ export default {
     return {
       selected: 0,
       chapters: [
-        {id: 'a', item: 'Chapter 1...3', route: 'TheVueCLI'},
-        {id: 'b', item: 'Chapter 4', route: 'ReactionTimer'},
-        {id: 'c', item: 'Chapter 5', route: 'WebForms'},
-        {id: 'd', item: 'Chapter 6...8', route: 'ProjectPlanner'},
+        {id: 'a', item: 'Chapter 1...4', route: 'ReactionTimer'},
+        {id: 'c', item: 'Chapter 5...8', route: 'ProjectPlanner'},
         {id: 'e', item: 'Chapter 9...12', route: 'DojoBlog'},
-        {id: 'f', item: 'Chapter 13..14', route: 'LiveChatRoom'}
+        {id: 'f', item: 'Chapter 13..15', route: 'LiveChatRoom'}
       ]
     }
   },

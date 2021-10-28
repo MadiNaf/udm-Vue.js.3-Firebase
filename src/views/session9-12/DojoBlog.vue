@@ -1,6 +1,7 @@
 <template>
   <div id="dojo-blog">
-    <h3 class="title">Dojo blog (The composition API)</h3>
+    <h3 class="title">Dojo blog</h3>
+    <p class="title-info">(The composition API)</p>
     <section>
       <BlogNavbar />
     </section>

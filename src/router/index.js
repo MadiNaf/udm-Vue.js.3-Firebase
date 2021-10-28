@@ -1,15 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TheVueCLI from '../views/session3/TheVueCLI.vue'
-import ReactionTimer from '../views/session4/ReactionTimer.vue'
-import WebForms from '../views/session5/WebForms.vue'
-import ProjectPlanner from '../views/session6-7-8/ProjectPlanner.vue'
-import EditProject from '../views/session6-7-8/components/EditProject.vue'
-import DojoBlog from '../views/session9-10-11-12/DojoBlog.vue'
-import Details from '../views/session9-10-11-12/components/Details.vue'
-import Tag from '../views/session9-10-11-12/components/Tag.vue'
-import Create from '../views/session9-10-11-12/components/Create.vue'
-import LiveChatRoom from '../views/session13-14/LiveChatRoom.vue'
-import Chatroom from '../views/session13-14/components/Chatroom'
+import ReactionTimer from '../views/session1-4/ReactionTimer.vue'
+import ProjectPlanner from '../views/session5-8/ProjectPlanner.vue'
+import EditProject from '../views/session5-8/components/EditProject.vue'
+import DojoBlog from '../views/session9-12/DojoBlog.vue'
+import Details from '../views/session9-12/components/Details.vue'
+import Tag from '../views/session9-12/components/Tag.vue'
+import Create from '../views/session9-12/components/Create.vue'
+import LiveChatRoom from '../views/session13-15/LiveChatRoom.vue'
+import Chatroom from '../views/session13-15/components/Chatroom'
 import { firebaseAuth } from '../firebase/config'
 
 // auth guard
@@ -33,26 +31,18 @@ const requireNoAuth = (to, form, next) => {
 }
 
 const routes = [
+  /** ************** Chapter 1 to 4 ************** */
   {
     path: '/',
     name: 'Home',
-    component: TheVueCLI
-  },
-  {
-    path: '/the-vue-cli',
-    name: 'TheVueCLI',
-    component: TheVueCLI
+    component: ReactionTimer
   },
   {
     path: '/reaction-timer',
     name: 'ReactionTimer',
     component: ReactionTimer
   },
-  {
-    path: '/web-forms',
-    name: 'WebForms',
-    component: WebForms
-  },
+    /** ************** Chapter 5 to 8 ************** */
   {
     path: '/project-planner',
     name: 'ProjectPlanner',
@@ -62,8 +52,10 @@ const routes = [
     path: '/project-planner/edit-project/:id',
     name: 'EditProject',
     component: EditProject,
-    props: true
+    props: true,
+    beforeEnter: requiredAuth
   },
+  /** ************** Chapter 9 to 12 ************** */
   {
     path: '/dojo-blog',
     name: 'DojoBlog',
@@ -78,13 +70,15 @@ const routes = [
   {
     path: '/dojo-blog/create',
     name: 'Create',
-    component: Create
+    component: Create,
+    beforeEnter: requiredAuth
   },
   {
     path: '/dojo-blog/tags/:tag',
     name: 'Tag',
     component: Tag
   },
+  /** ************** Chapter 13 to 15 ************** */
   {
     path: '/live-chat-room',
     name: 'LiveChatRoom',
@@ -96,12 +90,13 @@ const routes = [
     name: 'Chatroom',
     component: Chatroom,
     beforeEnter: requiredAuth
-  }
+  },
   // redirect
-  // {
-  //   path: '/all-jobs',
-  //   redirect: '/jobs'
-  // },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
+  },
+    /** ************** Chapter 16 to ... ************** */
   // 404 catchall
   // {
   //   path: '/:catchAll(.*)',

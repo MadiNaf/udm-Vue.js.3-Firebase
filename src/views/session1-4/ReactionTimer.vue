@@ -1,8 +1,8 @@
 <template>
   <div id="reaction-timer">
     <section>
-      <h3 class="title">Reaction Timer (Lifecycle Hoocks & Custom events)</h3>
-
+      <h3 class="title">REACTION TIMER</h3>
+      <p class="title-info">(The vue cli / Lifecycle Hoocks & Custom events)</p>
       <button class="btn"
               :class="{disabled: isPlaying}"
               @click="start"

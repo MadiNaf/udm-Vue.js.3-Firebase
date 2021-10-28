@@ -50,7 +50,7 @@ export default {
     })
 
     const getClass = (i) => {
-      return i%2 === 0? 'single-chat' : 'odd-message single-chat'
+      return i%2 === 0? 'even-msg single-chat' : 'odd-msg single-chat'
     }
 
     return {error, documents, formattedDocuments, messages, leftMsg, rightMsg, user, getClass}
@@ -64,8 +64,8 @@ export default {
     padding: 30px 20px;
   }
   .single-chat {
-    margin: 2px 0;
-    padding: 10px 20px;
+    margin: 5px 0;
+    padding: 12px 20px;
   }
   .created-at {
     display: block;
@@ -94,7 +94,13 @@ export default {
     align-items: center;
   }
 
-  .odd-message {
+  .odd-msg {
     background: #eeeeee;
+    border-radius: 25px;
+  }
+
+  .even-msg {
+    background: #fefefe;
+    border-radius: 25px;
   }
 </style>

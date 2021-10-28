@@ -2,8 +2,6 @@
   <div class="live-chat-room"  id="live-chat-room">
     <section class="lcr-container signup">
       <div>
-        <p class="text-center">Welcome</p>
-
         <div v-if="showLogin" class="form-container">
           <h2 class="text-center">Login</h2>
           <LoginForm @login="enterChat" />
@@ -54,7 +52,7 @@ export default {
   }
 
   .form-container {
-    margin-top: 15px; 
+    margin-top: 25px; 
   }
   #live-chat-room form {
     width: 300px;
