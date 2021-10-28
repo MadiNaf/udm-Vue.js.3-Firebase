@@ -22,6 +22,15 @@ const requiredAuth = (to, from, next) => {
   }
 }
 
+const requireNoAuth = (to, form, next) => {
+  let user = firebaseAuth
+  if(user) {
+    next({name: 'Chatroom'})
+  } else {
+    next()
+  }
+}
+
 const routes = [
   {
     path: '/',
@@ -78,7 +87,8 @@ const routes = [
   {
     path: '/live-chat-room',
     name: 'LiveChatRoom',
-    component: LiveChatRoom
+    component: LiveChatRoom,
+    beforeEnter: requireNoAuth
   },
   {
     path: '/chat-room',
