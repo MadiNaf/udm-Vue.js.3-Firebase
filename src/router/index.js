@@ -10,6 +10,9 @@ import LiveChatRoom from '../views/session13-15/LiveChatRoom.vue'
 import Chatroom from '../views/session13-15/components/Chatroom'
 import { firebaseAuth } from '../firebase/config'
 import MusoNinja from '../views/session16/MusoNinja.vue'
+import CreatePlaylist from '../views/session16/components/CreatePlaylist.vue'
+import PlaylistDetails from '../views/session16/components/PlaylistDetails.vue'
+import UserPlaylist from '../views/session16/components/UserPlaylist.vue'
 
 // auth guard
 const requiredAuth = (to, from, next) => {
@@ -101,15 +104,28 @@ const routes = [
   {
     path: '/muso-ninja',
     name: 'MusoNinja',
-    component: MusoNinja
-    // beforeEnter: requireNoAuth
+    component: MusoNinja,
+    beforeEnter: requiredAuth
   },
-  // 404 catchall
-  // {
-  //   path: '/:catchAll(.*)',
-  //   name: 'NotFound',
-  //   component: NotFound
-  // }
+  {
+    path: '/playlist/create',
+    name: 'CreatePlaylist',
+    component: CreatePlaylist,
+    beforeEnter: requiredAuth
+  },
+  {
+    path: '/playlist/:id',
+    name: 'PlaylistDetails',
+    component: PlaylistDetails,
+    props: true,
+    beforeEnter: requiredAuth
+  },
+  {
+    path: '/playlist/user',
+    name: 'UserPlaylist',
+    component: UserPlaylist,
+    beforeEnter: requiredAuth
+  }
 ]
 
 const router = createRouter({

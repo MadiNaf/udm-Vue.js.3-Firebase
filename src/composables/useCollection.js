@@ -9,8 +9,9 @@ const useCollection = (collection) => {
     error.value = null
     isPending.value = true
     try {
-      await firestoreService.collection(collection).add(doc)
+      const res = await firestoreService.collection(collection).add(doc)
       isPending.value = false
+      return res
     } catch(e) {
       console.log(e.message)
       error.value = 'Could not send the message'

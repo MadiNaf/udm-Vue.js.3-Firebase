@@ -66,11 +66,8 @@ a {
   cursor: pointer;
   display: inline-block;
 }
-.mn-button:hover, .btn:hover {
-  background: var(--primary);
-  color: white;
-}
-.mn-button:disabled {
+
+.mn-button:disabled, .lcr-button:disabled {
   opacity: 0.5;
   color: var(--primary);
   background: var(--secondary);

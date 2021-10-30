@@ -2,6 +2,9 @@
   <div id="navbar">
     <nav>
       <ul>
+        <li class="nav-logo">
+          <img src="@/assets/vue-firebase.jpg" alt="vue-firebse-logos" srcset="">
+        </li>
         <li v-for="chapter in chapters"
             :key="chapter.id"
             class="nav-item"
@@ -11,8 +14,8 @@
         </li>
       </ul>
 
-      <ul>
-        <li class="nav-item" @click="logout()">
+      <ul v-if="user">
+        <li class="nav-item" @click="handleLogout">
           <span class="material-icons logout">logout</span>
         </li>
       </ul>
@@ -22,42 +25,31 @@
 
 <script>
 import { useLogout, getUser } from '@/composables/useAuth'
+import { ref } from 'vue'
 
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      selected: 0,
-      chapters: [
-        {id: 'a', item: 'Chapter 1...4', route: 'ReactionTimer'},
-        {id: 'c', item: 'Chapter 5...8', route: 'ProjectPlanner'},
-        {id: 'd', item: 'Chapter 9...12', route: 'DojoBlog'},
-        {id: 'e', item: 'Chapter 13..15', route: 'LiveChatRoom'},
-        {id: 'f', item: 'Chapter 16', route: 'MusoNinja'}
-      ],
-      isConnected: false
-    }
-  },
-  mounted() {
+  setup() {
+    const { logout } = useLogout()
     const { user } = getUser()
-    this.isConnected = user.value ? true : false 
-  },
-  updated() {
-    const { user } = getUser()
-    this.isConnected = user.value ? true : false  
-  },
-  methods: {
-    moveTo(id) {
-      this.selected = id
-    }, 
-    logout() {
-      const { logout } = useLogout()
-      const handleClick = async () => {
-        await logout()
-        this.isConnected =  false
-      }
-      handleClick()
+
+    const selected = ref(0)
+    const chapters = ref([
+            {id: 'a', item: 'Chapter 1...4', route: 'ReactionTimer'},
+            {id: 'c', item: 'Chapter 5...8', route: 'ProjectPlanner'},
+            {id: 'd', item: 'Chapter 9...12', route: 'DojoBlog'},
+            {id: 'e', item: 'Chapter 13..15', route: 'LiveChatRoom'},
+            {id: 'f', item: 'Chapter 16', route: 'MusoNinja'}
+          ])
+
+    const moveTo = (id) => {
+      selected.value = id
     }
+
+    const handleLogout = async () => {
+      await logout()
+    }
+    return { selected, chapters, moveTo, handleLogout, user }
   }
 }
 </script>
@@ -81,6 +73,10 @@ export default {
     align-items: center;
   }
 
+  .nav-logo img{
+    margin-left: 10px;
+    width: 80px;
+  }
   .nav-item {
     display: flex;
     align-items: center;
@@ -107,6 +103,6 @@ export default {
 
   .logout {
     list-style: none;
-    color: #da0f41;
+    color: #ff3f80;
   }
 </style>
