@@ -1,6 +1,7 @@
 <template>
   <div id="project-planner">
-    <h3 class="title">Project planner (Vue router basics / Fetching data [Using JSON Server])</h3>
+    <h3 class="title">PROJECT PLANNER</h3>
+    <p class="title-info">(Forms & data binding / Vue router basics / Fetching data)</p>
 
     <section v-if="!isLoading"></section>
     <section v-else>
@@ -8,7 +9,7 @@
     </section>
     <NavTab :tabItems="tabItems" :selectedItem="currentTab">
 
-      <FilterNav @filterChange="current= $event" :current="current"/>
+      <FilterNav @filterChange="current= $event" :current="current" />
       
       <template v-slot:singleproject>
         <div v-if="projects.length" class="slot-container">
@@ -28,12 +29,12 @@
 </template>
 
 <script>
-import SingleProject from '../session6-7-8/components/SingleProject.vue'
-import AddProject from '../session6-7-8/components/AddProject.vue'
+import SingleProject from '../session5-8/components/SingleProject.vue'
+import AddProject from '../session5-8/components/AddProject.vue'
 import NavTab from '../common/NavTab.vue'
-import FilterNav from '../session6-7-8/components/FilterNav.vue'
+import FilterNav from '../session5-8/components/FilterNav.vue'
 import { firestoreService } from '../../firebase/config'
-import Spinner from '../session9-10-11/components/Spinner.vue'
+import Spinner from '../session9-12/components/Spinner.vue'
 
 export default {
   name: 'ProjectPlanner',
@@ -50,7 +51,7 @@ export default {
       tabItems: [],
       projects: [],
       current: 'all',
-      currentTab: 'singleproject'
+      currentTab: 'singleproject',
     };
   },
   mounted() {

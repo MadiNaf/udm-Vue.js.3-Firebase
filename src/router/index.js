@@ -1,33 +1,56 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TheVueCLI from '../views/session3/TheVueCLI.vue'
-import ReactionTimer from '../views/session4/ReactionTimer.vue'
-import WebForms from '../views/session5/WebForms.vue'
-import ProjectPlanner from '../views/session6-7-8/ProjectPlanner.vue'
-import EditProject from '../views/session6-7-8/components/EditProject.vue'
-import DojoBlog from '../views/session9-10-11/DojoBlog.vue'
-import Details from '../views/session9-10-11/components/Details.vue'
-import Tag from '../views/session9-10-11/components/Tag.vue'
+import ReactionTimer from '../views/session1-4/ReactionTimer.vue'
+import ProjectPlanner from '../views/session5-8/ProjectPlanner.vue'
+import EditProject from '../views/session5-8/components/EditProject.vue'
+import DojoBlog from '../views/session9-12/DojoBlog.vue'
+import Details from '../views/session9-12/components/Details.vue'
+import Tag from '../views/session9-12/components/Tag.vue'
+import Create from '../views/session9-12/components/Create.vue'
+import LiveChatRoom from '../views/session13-15/LiveChatRoom.vue'
+import Chatroom from '../views/session13-15/components/Chatroom'
+import { firebaseAuth } from '../firebase/config'
+import MusoNinja from '../views/session16/MusoNinja.vue'
+import CreatePlaylist from '../views/session16/components/CreatePlaylist.vue'
+import PlaylistDetails from '../views/session16/components/PlaylistDetails.vue'
+import UserPlaylist from '../views/session16/components/UserPlaylist.vue'
+
+// Practice components
+import Chat from '../views/practice/components/Chat.vue'
+import MultiUpload from '../views/practice/components/MultiUpload.vue'
+
+// auth guard
+const requiredAuth = (to, from, next) => {
+  let user = firebaseAuth.currentUser
+  if (!user) {
+    next({name: 'LiveChatRoom'})
+  } else {
+    next()
+  }
+}
+
+const requireNoAuth = (to, form, next) => {
+  let user = firebaseAuth.currentUser
+  console.log('user :: ', user)
+  if(user) {
+    next({name: 'Chatroom'})
+  } else {
+    next()
+  }
+}
+
 const routes = [
+  /** ************** Chapter 1 to 4 ************** */
   {
     path: '/',
     name: 'Home',
-    component: TheVueCLI
-  },
-  {
-    path: '/the-vue-cli',
-    name: 'TheVueCLI',
-    component: TheVueCLI
+    component: ReactionTimer
   },
   {
     path: '/reaction-timer',
     name: 'ReactionTimer',
     component: ReactionTimer
   },
-  {
-    path: '/web-forms',
-    name: 'WebForms',
-    component: WebForms
-  },
+    /** ************** Chapter 5 to 8 ************** */
   {
     path: '/project-planner',
     name: 'ProjectPlanner',
@@ -37,8 +60,10 @@ const routes = [
     path: '/project-planner/edit-project/:id',
     name: 'EditProject',
     component: EditProject,
-    props: true
+    props: true,
+    beforeEnter: requiredAuth
   },
+  /** ************** Chapter 9 to 12 ************** */
   {
     path: '/dojo-blog',
     name: 'DojoBlog',
@@ -50,27 +75,73 @@ const routes = [
     component: Details,
     props: true
   },
-  // {
-  //   path: '/dojo-blog/create',
-  //   name: 'Create',
-  //   component: Create
-  // },
+  {
+    path: '/dojo-blog/create',
+    name: 'Create',
+    component: Create,
+    beforeEnter: requiredAuth
+  },
   {
     path: '/dojo-blog/tags/:tag',
     name: 'Tag',
     component: Tag
-  }
+  },
+  /** ************** Chapter 13 to 15 ************** */
+  {
+    path: '/live-chat-room',
+    name: 'LiveChatRoom',
+    component: LiveChatRoom,
+    beforeEnter: requireNoAuth
+  },
+  {
+    path: '/chat-room',
+    name: 'Chatroom',
+    component: Chatroom,
+    beforeEnter: requiredAuth
+  },
   // redirect
-  // {
-  //   path: '/all-jobs',
-  //   redirect: '/jobs'
-  // },
-  // 404 catchall
-  // {
-  //   path: '/:catchAll(.*)',
-  //   name: 'NotFound',
-  //   component: NotFound
-  // }
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
+  },
+  /** ************** Chapter 16 to ... ************** */
+  {
+    path: '/muso-ninja',
+    name: 'MusoNinja',
+    component: MusoNinja,
+    beforeEnter: requiredAuth
+  },
+  {
+    path: '/playlist/create',
+    name: 'CreatePlaylist',
+    component: CreatePlaylist,
+    beforeEnter: requiredAuth
+  },
+  {
+    path: '/playlist/:id',
+    name: 'PlaylistDetails',
+    component: PlaylistDetails,
+    props: true,
+    beforeEnter: requiredAuth
+  },
+  {
+    path: '/playlist/user',
+    name: 'UserPlaylist',
+    component: UserPlaylist,
+    beforeEnter: requiredAuth
+  },
+
+  /** ************** Practice ************** */
+  {
+    path: '/upload',
+    name: 'MultiUpload',
+    component: MultiUpload
+  },
+  {
+    path: '/chat',
+    name: 'Chat',
+    component: Chat
+  },
 ]
 
 const router = createRouter({

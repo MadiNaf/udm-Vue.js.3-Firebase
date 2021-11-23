@@ -1,6 +1,10 @@
 <template>
   <div id="dojo-blog">
-    <h3 class="title">Dojo blog (The composition API)</h3>
+    <h3 class="title">Dojo blog</h3>
+    <p class="title-info">(The composition API)</p>
+    <section>
+      <BlogNavbar />
+    </section>
     <section>
       <div v-if="error">{{ error }}</div>
       <div v-if="posts.length">
@@ -20,10 +24,11 @@ import getPosts from './composables/getPosts.js'
 import PostList from './components/PostList.vue'
 import Spinner from './components/Spinner.vue'
 import TagCloud from './components/TagCloud.vue'
+import BlogNavbar from './components/BlogNavbar.vue'
 
 export default {
   name: 'DojoBlog',
-    components: { PostList, Spinner, TagCloud },
+    components: { PostList, Spinner, TagCloud, BlogNavbar },
   setup() { 
     const { posts, error, load } = getPosts()
 

@@ -2,6 +2,9 @@
   <div id="navbar">
     <nav>
       <ul>
+        <li class="nav-logo">
+          <img src="@/assets/vue-firebase.jpg" alt="vue-firebse-logos" srcset="">
+        </li>
         <li v-for="chapter in chapters"
             :key="chapter.id"
             class="nav-item"
@@ -10,29 +13,43 @@
           <router-link :to="{ name: chapter.route }">{{ chapter.item }}</router-link>
         </li>
       </ul>
+
+      <ul v-if="user">
+        <li class="nav-item" @click="handleLogout">
+          <span class="material-icons logout">logout</span>
+        </li>
+      </ul>
     </nav>
   </div>
 </template>
 
 <script>
+import { useLogout, getUser } from '@/composables/useAuth'
+import { ref } from 'vue'
+
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      selected: 0,
-      chapters: [
-        {id: 'a', item: 'Chapter 1...3', route: 'TheVueCLI'},
-        {id: 'b', item: 'Chapter 4', route: 'ReactionTimer'},
-        {id: 'c', item: 'Chapter 5', route: 'WebForms'},
-        {id: 'd', item: 'Chapter 6...8', route: 'ProjectPlanner'},
-        {id: 'e', item: 'Chapter 9...11', route: 'DojoBlog'}
-      ]
+  setup() {
+    const { logout } = useLogout()
+    const { user } = getUser()
+
+    const selected = ref(0)
+    const chapters = ref([
+            {id: 'a', item: 'Chapter 1...4', route: 'ReactionTimer'},
+            {id: 'c', item: 'Chapter 5...8', route: 'ProjectPlanner'},
+            {id: 'd', item: 'Chapter 9...12', route: 'DojoBlog'},
+            {id: 'e', item: 'Chapter 13..15', route: 'LiveChatRoom'},
+            {id: 'f', item: 'Chapter 16', route: 'MusoNinja'}
+          ])
+
+    const moveTo = (id) => {
+      selected.value = id
     }
-  },
-  methods: {
-    moveTo(id) {
-      this.selected = id
+
+    const handleLogout = async () => {
+      await logout()
     }
+    return { selected, chapters, moveTo, handleLogout, user }
   }
 }
 </script>
@@ -45,6 +62,8 @@ export default {
     background-color: #212F3C;
     height: 50px;
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
   }
 
   ul {
@@ -54,6 +73,10 @@ export default {
     align-items: center;
   }
 
+  .nav-logo img{
+    margin-left: 10px;
+    width: 80px;
+  }
   .nav-item {
     display: flex;
     align-items: center;
@@ -78,5 +101,8 @@ export default {
     color: #212F3C;
   }
 
-
+  .logout {
+    list-style: none;
+    color: #ff3f80;
+  }
 </style>

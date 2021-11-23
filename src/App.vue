@@ -37,8 +37,13 @@ a {
 
 .title {
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 15px;
+  margin-bottom: 12px;
+}
+.title-info {
+  text-align: center;
+  font-size: 14px;
   margin-bottom: 15px;
   font-style: italic;
 }
